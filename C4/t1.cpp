@@ -1,9 +1,6 @@
 #include <iostream>
 
 int main() {
-	// getline - если хотим читать несколько слов в строке
-	// 'A' - 1 - должно дать 'B'
-
 	const int size = 65;
 
 	char first_name[size];
