@@ -29,6 +29,7 @@ int main() {
 	};
 	
 	show_menu();
+	std::cout << "Enter your choice: ";
 	char choice;
 	while (std::cin.get(choice) && choice != QUIT) {
 		clear_buffer();	
@@ -52,6 +53,7 @@ int main() {
 	}
 	clear_buffer();
 
+	std::cout << "Bye!\n";
 
 	return 0;
 }
