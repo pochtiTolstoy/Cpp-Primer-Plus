@@ -13,29 +13,42 @@ struct Calc_package {
 };
 
 //---------------------------------------------------------------
-const int SIZE = 4;
+const int Size_basic = 4;
+const int Size_trig = 3;
 void init_basic_package(Calc_package* p_calc);
+void init_trig_package(Calc_package* p_calc);
 void delete_package(Calc_package* p_calc);
 double calculate(double, double, PFC);
 void package_calc(double, double, const Calc_package*);
 void show_results(const Calc_package* p_calc);
 
-double add(double x, double y);
-double sub(double x, double y);
-double mult(double x, double y);
-double div(double x, double y);
+double add(double, double);
+double sub(double, double);
+double mult(double, double);
+double div(double, double);
 
-void show_add(double x, double y);
-void show_sub(double x, double y);
-void show_mult(double x, double y);
-void show_div(double x, double y);
+double msin(double, double);
+double mcos(double, double);
+double mtan(double, double);
+
+void show_msin(double, double);
+void show_mcos(double, double);
+void show_mtan(double, double);
+
+void show_add(double, double);
+void show_sub(double, double);
+void show_mult(double, double);
+void show_div(double, double);
 void clear_buffer(void);
 
 // tracking functions is global scope
-PFC glob_calc[SIZE] = { add, sub, mult, div };
-PFS glob_show[SIZE] = { show_add, show_sub, show_mult, show_div };
+PFC glob_calc_basic[Size_basic] = { add, sub, mult, div };
+PFS glob_show_basic[Size_basic] = { show_add, show_sub, show_mult, show_div };
+PFC glob_calc_trig[Size_trig] = { msin, mcos, mtan };
+PFS glob_show_trig[Size_trig] = { show_msin, show_mcos, show_mtan };
 //---------------------------------------------------------------
 void start_calc(Calc_package* p_calc);
+bool package_alloc(Calc_package* p_calc, int size);
 
 
 int main() {
@@ -46,7 +59,12 @@ int main() {
 	show_results(&basic_calc); // DELETE
 	delete_package(&basic_calc); // Free memory allocated in package
 
-
+	Calc_package trig_calc; // Declaration
+	init_trig_package(&trig_calc);
+	std::cout << "Testing trig package:\n";
+	start_calc(&trig_calc);
+	show_results(&trig_calc);
+	delete_package(&trig_calc);
 
 	return 0;
 }
@@ -57,7 +75,7 @@ void start_calc(Calc_package* p_calc) {
 	while ((std::cin >> a >> b)) {
 		package_calc(a, b, p_calc);
 		std::cout << "Enter two next numbers: ";
-	}
+	}	
 	if (std::cin.fail())
 		std::cin.clear();
 	clear_buffer();
@@ -86,25 +104,46 @@ void show_results(const Calc_package* p_calc) {
 }
 
 void init_basic_package(Calc_package* p_calc) {
-	static const int FUN_NUM = 4;
-	if (FUN_NUM > SIZE) {
-		std::cerr << "Error: In function database only " << SIZE << " functions are availible.\n";
+	const int FUN_NUM = 4;
+	if (FUN_NUM > Size_basic) {
+		std::cerr << "Error: In function database only " << Size_basic << " functions are availible.\n";
 		p_calc->items = 0;
 		return;	
 	}
+	if (!package_alloc(p_calc, FUN_NUM))
+		return;
+	for (int i = 0; i < FUN_NUM; ++i) {
+		p_calc->f_calc[i] = glob_calc_basic[i];
+		p_calc->f_show[i] = glob_show_basic[i];
+	}
+}
+
+void init_trig_package(Calc_package* p_calc) {
+	const int FUN_NUM = 3;
+	if (FUN_NUM > Size_trig) {
+		std::cerr << "Error: In function database only " << Size_basic << " functions are availible.\n";
+		p_calc->items = 0;
+		return;	
+	}
+	if (!package_alloc(p_calc, FUN_NUM))
+		return;
+	for (int i = 0; i < FUN_NUM; ++i) {
+		p_calc->f_calc[i] = glob_calc_trig[i];
+		p_calc->f_show[i] = glob_show_trig[i];
+	}
+}
+
+bool package_alloc(Calc_package* p_calc, int size) {
 	if (p_calc->items != 0) {
 		std::cerr << "Error. Can't initialize initialized memory!\n" 
 							<< p_calc->items << " function in package already.\n";
-		return;
+		return false;
 	}
-	p_calc->items = FUN_NUM;
-	p_calc->f_calc = new PFC[FUN_NUM];
-	p_calc->f_show = new PFS[FUN_NUM];
-	p_calc->results = new double[FUN_NUM];
-	for (int i = 0; i < FUN_NUM; ++i) {
-		p_calc->f_calc[i] = glob_calc[i];
-		p_calc->f_show[i] = glob_show[i];
-	}
+	p_calc->items = size;
+	p_calc->f_calc = new PFC[size];
+	p_calc->f_show = new PFS[size];
+	p_calc->results = new double[size];
+	return true;
 }
 
 void delete_package(Calc_package* p_calc) {
@@ -148,6 +187,30 @@ void show_mult(double x, double y) {
 
 void show_div(double x, double y) {
 	std::cout << x << " / " << y << " = ";
+}
+
+double msin(double x, double y) {
+	return std::sin(x);
+}
+
+double mcos(double x, double y) {
+	return std::cos(x);
+}
+
+double mtan(double x, double y) {
+	return std::tan(x);
+}
+
+void show_msin(double x, double y) {
+	std::cout << "sin(" << x << ") = ";
+}
+
+void show_mcos(double x, double y) {
+	std::cout << "cos(" << x << ") = ";
+}
+
+void show_mtan(double x, double y) {
+	std::cout << "tan(" << x << ") = ";
 }
 
 double calculate(double a, double b, PFC pf) {
