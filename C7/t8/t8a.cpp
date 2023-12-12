@@ -1,6 +1,5 @@
 #include <iostream>
 //#include <array>
-#include <string>
 
 const int Seasons = 4;
 /*
