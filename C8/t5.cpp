@@ -15,8 +15,8 @@ int main() {
 
 template<typename T>
 T max5(const T arr[]) {
-  T max = arr[0];
+  T max_val = arr[0];
   for (int i = 1; i < size; ++i)
-    max = arr[i] > max ? arr[i] : max;
-  return max;
+    max_val = arr[i] > max_val ? arr[i] : max_val;
+  return max_val;
 }
