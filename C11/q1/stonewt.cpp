@@ -38,5 +38,5 @@ Stonewt Stonewt::operator*(double n) const {
 }
 
 Stonewt operator*(double n, const Stonewt& st) {
-  return st * n;
+  return Stonewt(st.pounds * n);
 }
