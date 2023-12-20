@@ -73,9 +73,5 @@ namespace VECTOR {
       os << "Vector object mode is invalid";
     return os;
   }
-
-  Vector::operator double() {
-    return mag;
-  }
 }
 
