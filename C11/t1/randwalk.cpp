@@ -15,6 +15,12 @@ int main() {
   double target;
   double dstep;
   double val;
+  std::cout << "Experiment!\n";
+  Vector tmp(1, 89, Vector::POL);
+  std::cout << tmp << std::endl;
+  tmp.rect_mode();
+  std::cout << tmp << std::endl;
+  std::cout << "End of experiment\n";
   std::ofstream fp;
   fp.open("data.txt");
   if (!fp.is_open()) {
