@@ -11,6 +11,7 @@ int main() {
   unsigned long steps = 0;
   double target;
   double dstep;
+  double val;
   std::cout << "Enter target distance (q to quit): ";
   while (std::cin >> target) {
     std::cout << "Enter step length: ";
@@ -29,6 +30,9 @@ int main() {
     std::cout << " or\n" << result << std::endl;
     std::cout << "Average outward distance per step = "
               << result.magval() / steps << std::endl;
+
+    val = result;
+    std::cout << "Len of result to double value: " << val << std::endl;
     steps = 0;
     result.reset(0.0, 0.0);
     std::cout << "Enter target distance (q to quit): ";
