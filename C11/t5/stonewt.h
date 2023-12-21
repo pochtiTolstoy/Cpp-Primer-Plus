@@ -2,8 +2,9 @@
 #define STONEWT_H_
 
 class Stonewt {
-private:
+public:
   enum Mode { STN, LBS };
+private:
   static const int Lbs_per_stn = 14;
   int stone;
   double pds_left;
@@ -20,10 +21,17 @@ public:
   void show_lbs() const;
   void show_stn() const;
   */
+  Stonewt& operator=(const Stonewt& st);
   Stonewt operator*(double n) const;
+  Stonewt operator+(const Stonewt& st) const;
+  Stonewt operator+(double pnd) const;
+  Stonewt operator-(const Stonewt& st) const;
+  Stonewt operator-(double pnd) const;
 
   friend std::ostream& operator<<(std::ostream& os, const Stonewt& st);
   friend Stonewt operator*(double n, const Stonewt& st);
+  friend Stonewt operator+(double pnd, const Stonewt& st);
+  friend Stonewt operator-(double pnd, const Stonewt& st);
 };
 
 #endif

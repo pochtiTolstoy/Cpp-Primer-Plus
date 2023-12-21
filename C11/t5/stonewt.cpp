@@ -34,8 +34,31 @@ void Stonewt::stn_mode(void) {
   mode = STN;
 }
 
+Stonewt& Stonewt::operator=(const Stonewt& st) {
+  stone = st.stone;
+  pds_left = st.pds_left;
+  pounds = st.pounds;
+  return *this;
+}
+
 Stonewt Stonewt::operator*(double n) const {
-  return Stonewt(pounds * n, mode);
+  return Stonewt(pounds * n);
+}
+
+Stonewt Stonewt::operator+(const Stonewt& st) const {
+  return Stonewt(pounds + st.pounds);
+}
+
+Stonewt Stonewt::operator+(double pnd) const {
+  return Stonewt(pounds + pnd);
+}
+
+Stonewt Stonewt::operator-(const Stonewt& st) const {
+  return Stonewt(pounds - st.pounds);
+}
+
+Stonewt Stonewt::operator-(double pnd) const {
+  return Stonewt(pounds - pnd);
 }
 
 std::ostream& operator<<(std::ostream& os, const Stonewt& st) {
@@ -49,5 +72,13 @@ std::ostream& operator<<(std::ostream& os, const Stonewt& st) {
 }
 
 Stonewt operator*(double n, const Stonewt& st) {
-  return Stonewt(st.pounds * n, st.mode);
+  return Stonewt(st.pounds * n);
+}
+
+Stonewt operator+(double pnd, const Stonewt& st) {
+  return Stonewt(st.pounds + pnd);
+}
+
+Stonewt operator-(double pnd, const Stonewt& st) {
+  return Stonewt(pnd - st.pounds);
 }

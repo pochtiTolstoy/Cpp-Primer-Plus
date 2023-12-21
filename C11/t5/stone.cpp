@@ -1,21 +1,14 @@
 #include <iostream>
 #include "stonewt.h"
 
-void display(const Stonewt& st, int n);
-
 int main() {
-  Stonewt obj(10, 8.0);
-  obj.lbs_mode();
-  std::cout << obj << std::endl;
-  obj = obj * 2;
-  std::cout << obj << std::endl;
+  Stonewt obj1(10, 3.0, Stonewt::STN);
+  Stonewt obj2(10); //LBS
+  std::cout << obj2 << std::endl;
+  obj1 = obj1 + obj2;
+  obj1 = obj1 + 1;
+  std::cout << obj1 << std::endl;
+  
 
   return 0;
-}
-
-void display(const Stonewt& st, int n) {
-  for (int i = 0; i < n; ++i) {
-    std::cout << "Wow! ";
-    std::cout << st << std::endl;
-  }
 }
