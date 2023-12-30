@@ -1,0 +1,10 @@
+CC=g++
+CFLAGS=-I.
+build: main.cpp dma.cpp
+	$(CC) main.cpp dma.cpp -o dma
+
+debug: main.cpp dma.cpp
+	$(CC) -g main.cpp dma.cpp -o dma
+
+clean:
+	rm *.o *.out dma
