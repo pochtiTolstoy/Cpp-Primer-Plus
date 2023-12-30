@@ -18,9 +18,9 @@ Cd::Cd(const Cd& c) {
 }
 
 Cd::Cd(const char* pf, const char* lb, int sl, double pt) {
-  std::strncpy(performer, pf, 50);
+  std::strncpy(performer, pf, 49);
   performer[49] = '\0';
-  std::strncpy(label, lb, 20);
+  std::strncpy(label, lb, 19);
   label[19] = '\0';
   selections = sl;
   playtime = pt;

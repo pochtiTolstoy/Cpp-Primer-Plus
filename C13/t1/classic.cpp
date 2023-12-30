@@ -18,7 +18,7 @@ Classic::Classic(
   int sl,
   double pt
 ) : Cd(pf, lb, sl, pt) {
-  std::strncpy(name, nm, 65); 
+  std::strncpy(name, nm, 64); 
   name[64] = '\0';
 }
 
