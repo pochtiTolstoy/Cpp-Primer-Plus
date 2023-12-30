@@ -1,5 +1,5 @@
 #include <iostream>
-#include "cd.h"
+#include "classic.h"
 
 void Bravo(const Cd& disk);
 
