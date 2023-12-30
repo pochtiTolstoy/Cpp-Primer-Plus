@@ -54,6 +54,7 @@ void baseDMA::View() const {
 
 baseDMA& baseDMA::operator=(const baseDMA& rs) {
   abcDMA::operator=(rs);
+  return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const baseDMA& rs) {
