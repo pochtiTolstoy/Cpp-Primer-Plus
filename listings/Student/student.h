@@ -16,6 +16,7 @@ public:
   explicit Student(const std::string& s) 
     : name(s), scores() {} // zero elements in valarray, default constructor
   // Copy constructor of std::string
+  explicit Student(int n) : name("Nully"), scores(n) {}
   Student(const std::string& s, int n)
     : name(s), scores(n) {} // n elements in valarray
   Student(const std::string& s, const ArrayDb& a)
