@@ -28,17 +28,11 @@ int main() {
     menu(); 
     get_button(choice);
     switch (choice) {
-      case BDMA: get_bdma(&data[items]);
-        break;
-      case LDMA: get_ldma(&data[items]);
-        break;
-      case HDMA: get_hdma(&data[items]);
-        break;
-      case QUIT: --items; std::cout << "Quiting menu.\n"; 
-        break;
-      default:
-        std::cout << "Error choice.\n";
-        exit(EXIT_FAILURE);
+      case BDMA: get_bdma(&data[items]); break;
+      case LDMA: get_ldma(&data[items]); break;
+      case HDMA: get_hdma(&data[items]); break;
+      case QUIT: --items; std::cout << "Quiting menu.\n"; break;
+      default: std::cout << "Error choice.\n"; exit(EXIT_FAILURE);
     }
     ++items;
   }
@@ -48,6 +42,7 @@ int main() {
     std::cout << i + 1 << ": ";
     data[i]->View();
   }
+
   baseDMA shirt("P", 7);
   lacksDMA balloon("red", "bimpo", 4);
   hasDMA map("Mer", "BUF", 6);
@@ -105,9 +100,9 @@ void get_button(int& num) {
 
 
 baseDMA build_BDMA(void) {
-  const int SIZE = 65;
-  char label[SIZE];
-  int rating;
+  static const int SIZE = 65;
+  static char label[SIZE];
+  static int rating;
   std::cout << "Enter label name: ";
   if (!std::cin.getline(label, SIZE)) free_io();
   std::cout << "Enter ratring: ";
