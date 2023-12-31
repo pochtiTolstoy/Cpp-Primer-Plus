@@ -6,5 +6,8 @@ build: main.cpp dma.cpp
 debug: main.cpp dma.cpp
 	$(CC) -g main.cpp dma.cpp -o dma
 
+test: test.cpp
+	$(CC) -g test.cpp -o test
+
 clean:
-	rm *.o *.out dma
+	rm *.o *.out dma test

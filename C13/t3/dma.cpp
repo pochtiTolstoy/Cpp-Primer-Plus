@@ -109,7 +109,7 @@ hasDMA::~hasDMA() {
 }
 
 void hasDMA::View() const {
-  abdDMA::View(); 
+  abcDMA::View(); 
   std::cout << "Style: " << style << '\n';
 }
 
