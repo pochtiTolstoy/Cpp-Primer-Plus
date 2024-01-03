@@ -2,12 +2,12 @@
 #include <vector>
 
 struct S {
-  int n = 1;
-  int a = 10;
-  std::vector<int> v;
+  int a = 1;
+  std::vector<int> v; // Также кладётся с адресов кратных восьми
 };
 
 int main() {
+  std::cout << sizeof(int) << '\n';
   std::cout << sizeof(S) << '\n';
   std::cout << sizeof(std::vector<int>) << '\n';
   return 0;
