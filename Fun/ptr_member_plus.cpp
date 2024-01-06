@@ -14,8 +14,10 @@ int main() {
   void (S::* pf)(char) = &S::fun;
   void (*pff)(char) = func;
   S s{2, 3.3, 4.4};
+  S* ps = &s;
   std::cout << "result: " << s.*pt << '\n';
   (s.*pf)('a');
-  (*pff)('a');
+  (*pff)('b');
+  (ps->*pf)('c');
   return 0;
 }
