@@ -5,11 +5,11 @@
 #include <valarray>
 #include "Pair.h"
 
-typedef std::valarray<int> ArrayInt;
-typedef Pair<ArrayInt, ArrayInt> PairArray;
 
 class Wine {
 private:
+  typedef std::valarray<int> ArrayInt;
+  typedef Pair<ArrayInt, ArrayInt> PairArray;
   std::string label_;
   int year_;
   PairArray data_;
