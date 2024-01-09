@@ -34,5 +34,6 @@ int main() {
   lolas.print();
 
   std::cout << "Bye!\n";
+  // no leaks because of Worker* specialization
   return 0;
 }
