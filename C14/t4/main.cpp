@@ -18,8 +18,8 @@ int main() {
   for (int i = 0; i < SIZE; ++i) {
     char choice;
     cout << "Enter the person category:\n"
-         << "p: Person\tg:Gunslinger\t"
-         << "o: PokerPlayer\tb:BadDude\t"
+         << "p: Person\tg: Gunslinger\t"
+         << "o: PokerPlayer\tb: BadDude\t"
          << "q: quit\n";
     cin >> choice;
     while (strchr("pgobq", choice) == NULL) {
