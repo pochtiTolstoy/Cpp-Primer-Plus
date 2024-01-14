@@ -25,6 +25,12 @@ int main() {
   std::cout << '\n';
   std::transform(ar2.begin(), ar2.end(), out, pow); // First version of transform
   std::cout << '\n';
+
+  std::cout << "Source vectors after transformation:\n";
+  std::copy(ar1.begin(), ar1.end(), out);
+  std::cout << '\n';
+  std::copy(ar2.begin(), ar2.end(), out);
+  std::cout << '\n';
   // Если выходим за границы, то считаем, что в векторе остались нули
 
   std::transform(ar1.begin(), ar1.end(), ar2.begin(), out, mean); // Second version
