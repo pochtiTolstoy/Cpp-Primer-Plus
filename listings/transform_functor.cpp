@@ -29,6 +29,9 @@ int main() {
 
   std::transform(ar1.begin(), ar1.end(), ar2.begin(), out, mean); // Second version
   std::cout << '\n';
+  std::cout << "Sum of vectors:\n";
+  std::transform(ar1.begin(), ar1.end(), ar2.begin(), out, std::plus<double>());
+  std::cout << '\n';
 
   return 0;
 }
