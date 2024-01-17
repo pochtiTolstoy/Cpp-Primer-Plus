@@ -83,8 +83,12 @@ void P::show_names() const {
 
 std::set<std::string>
 concatenate_lists(const Person& p1, const Person& p2) {
-  std::set<std::string> res(p1.get_data().begin(), p1.get_data().end());
-  for (auto x: p2.get_data()) res.insert(x);
+  std::set<std::string> res;
+  std::set_union(
+    p1.get_data().begin(), p1.get_data().end(),
+    p2.get_data().begin(), p2.get_data().end(),
+    std::insert_iterator<std::set<std::string>>(res, res.begin())
+  );
   return res;
 }
 
