@@ -38,4 +38,3 @@ void is_open_check(const StreamType& file) {
     exit(EXIT_FAILURE);
   }
 } 
-
